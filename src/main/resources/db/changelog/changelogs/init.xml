@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                   https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+
+    <changeSet id="0" author="admin">
+        <sql>
+            CREATE TABLE product(
+                id INT PRIMARY KEY,
+                name varchar(255),
+                price INT
+            );
+
+            CREATE SEQUENCE product_seq
+                INCREMENT BY 1
+                START WITH 1000;
+        </sql>
+    </changeSet>
+</databaseChangeLog>
