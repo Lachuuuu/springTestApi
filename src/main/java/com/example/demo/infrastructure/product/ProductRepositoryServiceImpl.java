@@ -17,17 +17,24 @@ public class ProductRepositoryServiceImpl implements ProductRepositoryService{
 
     @PostConstruct
     void fillDatabase(){
-        repository.saveAll(List.of(ProductEntity.builder()
-                        .name("chleb")
-                        .price(1L)
-                .build(), ProductEntity.builder()
-                        .name("maslo")
-                        .price(5L)
-                .build()));
+        if(repository.count() == 0) {
+            repository.saveAll(List.of(ProductEntity.builder()
+                    .name("chleb")
+                    .price(1L)
+                    .build(), ProductEntity.builder()
+                    .name("maslo")
+                    .price(5L)
+                    .build()));
+        }
     }
 
     @Override
     public List<Product> getAllProducts() {
         return mapper.map(repository.findAll());
+    }
+
+    @Override
+    public void addNewProduct(Product product) {
+        repository.save(mapper.map(product));
     }
 }

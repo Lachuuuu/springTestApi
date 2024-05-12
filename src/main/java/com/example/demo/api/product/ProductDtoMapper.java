@@ -10,6 +10,6 @@ import java.util.List;
 @Mapper(componentModel = "spring")
 public interface ProductDtoMapper {
     ProductDto map(Product entity);
-
     List<ProductDto> map(List<Product> entities);
+    Product map(ProductDto product);
 }
