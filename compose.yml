@@ -13,7 +13,7 @@ services:
       - backend
 
   backend:
-    build: .
+    image: szugop/testy:latest
     deploy:
       replicas: 4
       placement:
