@@ -37,4 +37,9 @@ public class ProductRepositoryServiceImpl implements ProductRepositoryService{
     public void addNewProduct(Product product) {
         repository.save(mapper.map(product));
     }
+
+    @Override
+    public void deleteAll() {
+        repository.deleteAll();
+    }
 }

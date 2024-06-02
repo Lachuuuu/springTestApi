@@ -14,6 +14,11 @@ services:
 
   backend:
     build: .
+    deploy:
+      replicas: 4
+      placement:
+        constraints:
+          - node.role == worker  # Constraint to run only on worker nodes
     depends_on:
       - postgres
     environment:
@@ -24,10 +29,14 @@ services:
       - "2137:8080"  # Map port 2137 on host to port 8080 on container
     networks:
       - backend
-    restart: always
+
+    
 
 networks:
   backend:
+    driver: overlay
+    driver_opts:
+      encrypted: "true
 
 volumes:
   postgres-data:

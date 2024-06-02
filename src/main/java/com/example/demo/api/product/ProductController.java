@@ -24,4 +24,9 @@ public class ProductController {
     void addProduct(@RequestBody Product product){
         productService.addProduct(product);
     }
+
+    @DeleteMapping()
+    void deleteALL(){
+        productService.deleteAll();
+    }
 }

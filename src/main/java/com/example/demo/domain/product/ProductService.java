@@ -24,4 +24,8 @@ public class ProductService {
     public void addProduct(Product product){
         productRepositoryService.addNewProduct(product);
     }
+
+    public void deleteAll(){
+        productRepositoryService.deleteAll();
+    }
 }
