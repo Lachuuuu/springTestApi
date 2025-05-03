@@ -7,7 +7,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.testcontainers.containers.PostgreSQLContainer;
 import org.testcontainers.utility.DockerImageName;
 
-@Configuration
+//@Configuration
 public class PostgresqlContainerSetup {
     private PostgreSQLContainer<?> postgresContainer;
     private JdbcTemplate jdbcTemplate;
