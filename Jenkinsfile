@@ -7,7 +7,7 @@ pipeline {
 
         stage('Initialize') {
             steps {
-                sh 'echo Setting up environment'
+                githubNotify context: 'jenkins/build', status: 'PENDING', description: 'Build started'
             }
         }
 
@@ -16,6 +16,18 @@ pipeline {
                 script {
                     sh 'mvn clean install'
                 }
+            }
+        }
+
+        post {
+            success {
+                githubNotify context: 'jenkins/build', status: 'SUCCESS', description: 'Build succeeded'
+            }
+            failure {
+                githubNotify context: 'jenkins/build', status: 'FAILURE', description: 'Build failed'
+            }
+            unstable {
+                githubNotify context: 'jenkins/build', status: 'FAILURE', description: 'Build unstable'
             }
         }
 
