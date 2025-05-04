@@ -18,18 +18,17 @@ pipeline {
                 }
             }
         }
+    }
 
-        post {
-            success {
-                githubNotify context: 'jenkins/build', status: 'SUCCESS', description: 'Build succeeded'
-            }
-            failure {
-                githubNotify context: 'jenkins/build', status: 'FAILURE', description: 'Build failed'
-            }
-            unstable {
-                githubNotify context: 'jenkins/build', status: 'FAILURE', description: 'Build unstable'
-            }
+    post {
+        success {
+            githubNotify context: 'jenkins/build', status: 'SUCCESS', description: 'Build succeeded'
         }
-
+        failure {
+            githubNotify context: 'jenkins/build', status: 'FAILURE', description: 'Build failed'
+        }
+        unstable {
+            githubNotify context: 'jenkins/build', status: 'FAILURE', description: 'Build unstable'
+        }
     }
 }
