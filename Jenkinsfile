@@ -8,6 +8,7 @@ pipeline {
         stage('Initialize') {
             steps {
                 sh 'echo Setting up environment'
+                publishChecks name: 'Initialize', status: 'IN_PROGRESS'
             }
         }
 
@@ -19,5 +20,24 @@ pipeline {
             }
         }
 
+    }
+
+    post {
+        success {
+            script {
+                publishChecks name: 'Maven Build', status: 'COMPLETED', conclusion: 'SUCCESS', output: [
+                    title: 'Maven Build',
+                    summary: 'Build completed successfully.'
+                ]
+            }
+        }
+        failure {
+            script {
+                publishChecks name: 'Maven Build', status: 'COMPLETED', conclusion: 'FAILURE', output: [
+                    title: 'Maven Build',
+                    summary: 'Build failed.'
+                ]
+            }
+        }
     }
 }
